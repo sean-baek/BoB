@@ -1,3 +1,8 @@
+#include <stdio.h>
+#include <stdint.h>
+#include <arpa/inet.h>
+#include <assert.h>
+
 int cross_file(char *message, const char* mode)
 {
 	uint32_t a;
