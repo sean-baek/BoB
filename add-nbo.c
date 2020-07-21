@@ -28,8 +28,8 @@ int main(int argc, char *argv[])
     a1 = cross_file(argv[1], "rb");
     sum_cross += a1;
 
-	b1 = cross_file(argv[2], "rb");
-	sum_cross += b1;
+    b1 = cross_file(argv[2], "rb");
+    sum_cross += b1;
     
     printf("%d(0x%x) + %d(0x%x) = %d(0x%x)", a1, a1, b1, b1, sum_cross, sum_cross);
 
