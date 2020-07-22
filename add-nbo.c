@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <arpa/inet.h>
-#include <assert.h>
 
 int cross_file(char *message, const char* mode)
 {
@@ -10,8 +9,9 @@ int cross_file(char *message, const char* mode)
 	uint32_t cross;
 
 	FILE *fp = fopen(message, mode);
+	if(fp == NULL)
+		printf("Can't open file\n");
 	fread(pa, 1, 4, fp);
-	assert(pa != 0);
 	cross = ntohl(a);
 
 	fclose(fp);
@@ -33,8 +33,8 @@ int main(int argc, char *argv[])
     a1 = cross_file(argv[1], "rb");
     sum_cross += a1;
 
-    b1 = cross_file(argv[2], "rb");
-    sum_cross += b1;
+	b1 = cross_file(argv[2], "rb");
+	sum_cross += b1;
     
     printf("%d(0x%x) + %d(0x%x) = %d(0x%x)", a1, a1, b1, b1, sum_cross, sum_cross);
 
