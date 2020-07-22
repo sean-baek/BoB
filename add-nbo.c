@@ -10,7 +10,10 @@ int cross_file(char *message, const char* mode)
 
 	FILE *fp = fopen(message, mode);
 	if(fp == NULL)
+	{
 		printf("Can't open file\n");
+		return 0;
+	}
 	fread(pa, 1, 4, fp);
 	cross = ntohl(a);
 
@@ -21,7 +24,7 @@ int cross_file(char *message, const char* mode)
 
 int main(int argc, char *argv[])
 {   
-	uint32_t a1, b1;
+    uint32_t a1, b1;
     uint32_t sum_cross=0;
     
     if(argc < 3)
