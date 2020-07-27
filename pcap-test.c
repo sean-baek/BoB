@@ -20,7 +20,7 @@ void print_line()
 void usage()
 {
     printf("syntax: pcap-test <interface>\n");
-    printf("sample: pcap_test wlan0\n");
+    printf("sample: pcap-test wlan0\n");
 }
 
 int main(int argc, char **argv)
