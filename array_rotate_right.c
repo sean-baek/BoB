@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+
 int main(void)
 {
     int i, j, k, a, pos=0;
