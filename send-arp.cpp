@@ -64,7 +64,7 @@ int main(int argc, char *argv[])
     {
         puts("get_myinfo() error!\n");
         pcap_close(handle);
-        return 0;
+        return -1;
     }
     puts("ready....\n");
 
@@ -88,7 +88,7 @@ int main(int argc, char *argv[])
     {
         puts("sendpacket() error!\n");
         pcap_close(handle);
-        return 0;
+        return -1;
     }
 
     puts("Finding out about the other host....\n");
@@ -97,7 +97,7 @@ int main(int argc, char *argv[])
     {
         puts("get_sendemac() error!\n");
         pcap_close(handle);
-        return 0;
+        return -1;
     }
     
     eapacket.eth.dmac_ = sendermac;
@@ -118,7 +118,7 @@ int main(int argc, char *argv[])
     {
         puts("can't attack\n");
         pcap_close(handle);
-        return 0;
+        return -1;
     }
     else puts("attacked!!!!!\n");
     
@@ -135,14 +135,14 @@ int get_myinfo(const char *if_name, struct ifreq ifr, uint8_t *attacker_mac, cha
     if((sock = socket(PF_INET, SOCK_DGRAM, 0)) < 0)
     {
         puts("socket error");
-        return 0;
+        return -1;
     }
     
     if(ioctl(sock, SIOCGIFHWADDR, &ifr) != 0)
     {
         puts("can't get hardware address");
         close(sock);
-        return 0;
+        return -1;
     }
     else
         memcpy(attacker_mac, ifr.ifr_hwaddr.sa_data, 6);
@@ -151,7 +151,7 @@ int get_myinfo(const char *if_name, struct ifreq ifr, uint8_t *attacker_mac, cha
    {
        puts("can't get ip address");
        close(sock);
-       return 0;
+       return -1;
    }
 
     addr = (struct sockaddr_in*)&ifr.ifr_addr;
